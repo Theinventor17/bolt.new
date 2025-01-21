@@ -5,7 +5,10 @@ import { Chat } from '~/components/chat/Chat.client';
 import { Header } from '~/components/header/Header';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Bolt' }, { name: 'description', content: 'Talk with Bolt, an AI assistant from StackBlitz' }];
+  return [
+    { title: 'Aura Coder' }, 
+    { name: 'description', content: 'Talk with Aura Coder, an AI assistant' }
+  ];
 };
 
 export const loader = () => json({});

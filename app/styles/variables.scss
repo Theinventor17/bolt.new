@@ -102,6 +102,17 @@
   --bolt-terminal-brightMagenta: #bc05bc;
   --bolt-terminal-brightCyan: #0598bc;
   --bolt-terminal-brightWhite: #a5a5a5;
+
+  /* New Gradient Colors */
+  --gradient-primary: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
+  --gradient-glow: linear-gradient(135deg, 
+    rgba(78, 205, 196, 0.4),
+    rgba(69, 183, 209, 0.4),
+    rgba(255, 107, 107, 0.4)
+  );
+
+  --bolt-elements-textGradient: var(--gradient-primary);
+  --bolt-elements-glowGradient: var(--gradient-glow);
 }
 
 /* Color Tokens Dark Theme */
@@ -208,6 +219,17 @@
   --bolt-terminal-brightMagenta: #ff6ac1;
   --bolt-terminal-brightCyan: #9aedfe;
   --bolt-terminal-brightWhite: #f1f1f0;
+
+  /* New Gradient Colors */
+  --gradient-primary: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
+  --gradient-glow: linear-gradient(135deg, 
+    rgba(78, 205, 196, 0.4),
+    rgba(69, 183, 209, 0.4),
+    rgba(255, 107, 107, 0.4)
+  );
+
+  --bolt-elements-textGradient: var(--gradient-primary);
+  --bolt-elements-glowGradient: var(--gradient-glow);
 }
 
 /*
@@ -248,4 +270,32 @@
   --bolt-elements-terminal-color-brightMagenta: var(--bolt-terminal-brightMagenta);
   --bolt-elements-terminal-color-brightCyan: var(--bolt-terminal-brightCyan);
   --bolt-elements-terminal-color-brightWhite: var(--bolt-terminal-brightWhite);
+
+  /* Gradient Colors */
+  --gradient-primary: linear-gradient(135deg, #FF6B6B, #9D4EDD, #6C63FF);
+  --gradient-glow: linear-gradient(135deg, 
+    rgba(157, 78, 221, 0.4),
+    rgba(108, 99, 255, 0.4),
+    rgba(255, 107, 107, 0.4)
+  );
+  
+  --gradient-background: linear-gradient(
+    135deg,
+    #1a1033 0%,
+    #2d1b4e 25%,
+    #1f1635 50%,
+    #2b1b4a 75%,
+    #1a1033 100%
+  );
+
+  /* Dark theme updates */
+  &[data-theme='dark'] {
+    --bolt-elements-background: var(--gradient-background);
+    --bolt-elements-background-depth-1: rgba(26, 16, 51, 0.95);
+    --bolt-elements-background-depth-2: rgba(45, 27, 78, 0.95);
+    --bolt-elements-textGradient: var(--gradient-primary);
+    --bolt-elements-glowGradient: var(--gradient-glow);
+    --bolt-elements-textPrimary: #ffffff;
+    --bolt-elements-textSecondary: rgba(255, 255, 255, 0.8);
+  }
 }

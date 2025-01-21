@@ -28,11 +28,11 @@ interface BaseChatProps {
 }
 
 const EXAMPLE_PROMPTS = [
-  { text: 'Build a todo app in React using Tailwind' },
-  { text: 'Build a simple blog using Astro' },
-  { text: 'Create a cookie consent form using Material UI' },
-  { text: 'Make a space invaders game' },
-  { text: 'How do I center a div?' },
+  { text: 'Build a 3D solar system visualization using Three.js and React' },
+  { text: 'Build a real-time collaborative whiteboard with WebSocket and Canvas' },
+  { text: 'Build A BCI Application Where i can control programs with my mind' },
+  { text: 'Build a multiplayer VR escape room with physics and hand tracking' },
+  { text: 'Build a real-time chat app with end-to-end encryption and file sharing' },
 ];
 
 const TEXTAREA_MIN_HEIGHT = 76;
@@ -72,12 +72,12 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         <div ref={scrollRef} className="flex overflow-y-auto w-full h-full">
           <div className={classNames(styles.Chat, 'flex flex-col flex-grow min-w-[var(--chat-min-width)] h-full')}>
             {!chatStarted && (
-              <div id="intro" className="mt-[26vh] max-w-chat mx-auto">
-                <h1 className="text-5xl text-center font-bold text-bolt-elements-textPrimary mb-2">
-                  Where ideas begin
+              <div id="intro" className="mt-[10vh] max-w-chat mx-auto">
+                <h1 className="text-5xl text-center font-bold text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text mb-2">
+                  Turn your ideas into reality
                 </h1>
                 <p className="mb-4 text-center text-bolt-elements-textSecondary">
-                  Bring ideas to life in seconds or get help on existing projects.
+                  Transform your ideas into working code instantly, or get expert guidance on your existing projects.
                 </p>
               </div>
             )}
@@ -130,7 +130,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                       minHeight: TEXTAREA_MIN_HEIGHT,
                       maxHeight: TEXTAREA_MAX_HEIGHT,
                     }}
-                    placeholder="How can Bolt help you today?"
+                    placeholder="What would you like Aura to build?"
                     translate="no"
                   />
                   <ClientOnly>
@@ -204,6 +204,19 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                 </div>
               </div>
             )}
+            <div className="mt-auto text-center text-sm py-4">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text font-bold">
+                Powered by Aura 2.0 and{' '}
+              </span>
+              <a
+                href="https://rolemodel.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text hover:underline"
+              >
+                Role Model AI
+              </a>
+            </div>
           </div>
           <ClientOnly>{() => <Workbench chatStarted={chatStarted} isStreaming={isStreaming} />}</ClientOnly>
         </div>

@@ -10,7 +10,7 @@ import { logger } from '~/utils/logger';
 import { HistoryItem } from './HistoryItem';
 import { binDates } from './date-binning';
 
-const menuVariants = {
+const menuVariants: Variants = {
   closed: {
     opacity: 0,
     visibility: 'hidden',
@@ -29,7 +29,7 @@ const menuVariants = {
       ease: cubicEasingFn,
     },
   },
-} satisfies Variants;
+};
 
 type DialogContent = { type: 'delete'; item: ChatHistoryItem } | null;
 
@@ -76,7 +76,7 @@ export function Menu() {
     if (open) {
       loadEntries();
     }
-  }, [open]);
+  }, [open, loadEntries]);
 
   useEffect(() => {
     const enterThreshold = 40;
@@ -105,37 +105,49 @@ export function Menu() {
       initial="closed"
       animate={open ? 'open' : 'closed'}
       variants={menuVariants}
-      className="flex flex-col side-menu fixed top-0 w-[350px] h-full bg-bolt-elements-background-depth-2 border-r rounded-r-3xl border-bolt-elements-borderColor z-sidebar shadow-xl shadow-bolt-elements-sidebar-dropdownShadow text-sm"
+      className="flex flex-col side-menu fixed top-0 w-[350px] h-full bg-black border-r rounded-r-3xl border-transparent z-sidebar shadow-xl shadow-purple-700/50 text-sm"
     >
       <div className="flex items-center h-[var(--header-height)]">{/* Placeholder */}</div>
       <div className="flex-1 flex flex-col h-full w-full overflow-hidden">
         <div className="p-4">
           <a
             href="/"
-            className="flex gap-2 items-center bg-bolt-elements-sidebar-buttonBackgroundDefault text-bolt-elements-sidebar-buttonText hover:bg-bolt-elements-sidebar-buttonBackgroundHover rounded-md p-2 transition-theme"
+            className="flex gap-2 items-center bg-transparent text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 hover:opacity-90 hover:text-white rounded-md p-2 transition-all"
           >
             <span className="inline-block i-bolt:chat scale-110" />
             Start new chat
           </a>
         </div>
-        <div className="text-bolt-elements-textPrimary font-medium pl-6 pr-5 my-2">Your Chats</div>
+        <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 font-medium pl-6 pr-5 my-2">
+          Your Chats
+        </div>
         <div className="flex-1 overflow-scroll pl-4 pr-5 pb-5">
-          {list.length === 0 && <div className="pl-2 text-bolt-elements-textTertiary">No previous conversations</div>}
+          {list.length === 0 && (
+            <div className="pl-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+              No previous conversations
+            </div>
+          )}
           <DialogRoot open={dialogContent !== null}>
             {binDates(list).map(({ category, items }) => (
               <div key={category} className="mt-4 first:mt-0 space-y-1">
-                <div className="text-bolt-elements-textTertiary sticky top-0 z-1 bg-bolt-elements-background-depth-2 pl-2 pt-2 pb-1">
+                <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 sticky top-0 z-1 bg-black pl-2 pt-2 pb-1">
                   {category}
                 </div>
                 {items.map((item) => (
-                  <HistoryItem key={item.id} item={item} onDelete={() => setDialogContent({ type: 'delete', item })} />
+                  <HistoryItem
+                    key={item.id}
+                    item={item}
+                    onDelete={() => setDialogContent({ type: 'delete', item })}
+                  />
                 ))}
               </div>
             ))}
             <Dialog onBackdrop={closeDialog} onClose={closeDialog}>
               {dialogContent?.type === 'delete' && (
                 <>
-                  <DialogTitle>Delete Chat?</DialogTitle>
+                  <DialogTitle className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+                    Delete Chat?
+                  </DialogTitle>
                   <DialogDescription asChild>
                     <div>
                       <p>
@@ -144,7 +156,7 @@ export function Menu() {
                       <p className="mt-1">Are you sure you want to delete this chat?</p>
                     </div>
                   </DialogDescription>
-                  <div className="px-5 pb-4 bg-bolt-elements-background-depth-2 flex gap-2 justify-end">
+                  <div className="px-5 pb-4 bg-black flex gap-2 justify-end">
                     <DialogButton type="secondary" onClick={closeDialog}>
                       Cancel
                     </DialogButton>
@@ -163,7 +175,7 @@ export function Menu() {
             </Dialog>
           </DialogRoot>
         </div>
-        <div className="flex items-center border-t border-bolt-elements-borderColor p-4">
+        <div className="flex items-center border-t border-gray-700 p-4">
           <ThemeSwitch className="ml-auto" />
         </div>
       </div>

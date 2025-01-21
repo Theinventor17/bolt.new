@@ -14,13 +14,14 @@ export interface SliderOptions<T> {
   right: SliderOption<T>;
 }
 
-interface SliderProps<T> {
+export interface SliderProps<T extends string> {
   selected: T;
   options: SliderOptions<T>;
-  setSelected?: (selected: T) => void;
+  setSelected: (value: T) => void;
+  className?: string;
 }
 
-export const Slider = genericMemo(<T,>({ selected, options, setSelected }: SliderProps<T>) => {
+export const Slider = genericMemo(<T extends string>({ selected, options, setSelected, className }: SliderProps<T>) => {
   const isLeftSelected = selected === options.left.value;
 
   return (
